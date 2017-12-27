@@ -47,7 +47,7 @@ export class ProductComponent implements OnInit {
     })*/
     let _self = this;
 
-    this.mHttp.get({
+    this.mHttp.get<Array<ProductModel>>({
       url: 'product/getProducts',
       params: {
         'a': '1',
