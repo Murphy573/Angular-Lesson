@@ -4,7 +4,7 @@ import {ProductModel} from './product.model';
 import {ProductService} from '../shared/product.service';
 import {FormControl} from "@angular/forms";
 import "rxjs/add/operator/debounceTime";
-import {HttpClient} from "@angular/common/http";
+import {HttpErrorResponse} from '@angular/common/http';
 import {HttpServiceService} from "../http-service.service";
 
 @Component({
@@ -23,7 +23,6 @@ export class ProductComponent implements OnInit {
 
   constructor(
     public productService: ProductService,
-    public http: HttpClient,
     public mHttp: HttpServiceService
   ) {}
 
@@ -36,16 +35,26 @@ export class ProductComponent implements OnInit {
   }
 
   private _initData() {
-    /*this.http.get('product/getProducts').subscribe(
+    this.productService.getProducts().subscribe(
       data => {
-        this.products = <Array<ProductModel>>data;
+        this.products = data;
+      },
+      (error2: HttpErrorResponse) => {
+        debugger;
+      });
+    /*this.http.get<Array<ProductModel>>('product/getProductsss').subscribe(
+      data => {
+        this.products = data;
+      },
+      (error2: HttpErrorResponse) => {
+        debugger;
       }
     )*/
 
     /*this.http.get<Array<ProductModel>>('product/getProducts').debounceTime(2000).toPromise().then(data => {
       this.products = data;
     })*/
-    let _self = this;
+    /*let _self = this;
 
     this.mHttp.get<Array<ProductModel>>({
       url: 'product/getProducts',
@@ -57,7 +66,7 @@ export class ProductComponent implements OnInit {
         _self.products = data;
       }
     })
-
+*/
   }
 
 }

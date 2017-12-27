@@ -23,7 +23,11 @@ export class SearchComponent implements OnInit {
   }
 
   initProductCategories() {
-    this.productCategories = this.ps.getAllProductCategory();
+    this.ps.getAllProductCategory().subscribe(
+      data=> {
+        this.productCategories = data;
+      }
+    )
   }
 
   createFormModel() {

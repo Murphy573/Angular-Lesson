@@ -27,11 +27,26 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit() {
     this.productId = +this.routeInfo.snapshot.params['id'];
+    this.getProductById();
+  }
 
-    this.product = this.productService.getProduct(this.productId);
+  getProductById(): void {
+    this.productService.getProductById(this.productId).subscribe(
+      data=> {
+        this.product = data;
+        this.getProductComments();
 
-    this.comments = this.productService.getCommentsForProduct(this.productId);
-    this.calcAverage();
+      }
+    )
+  }
+
+  getProductComments () {
+    this.productService.getComments4Product(this.productId).subscribe(
+      data=> {
+        this.comments = data;
+        this.calcAverage();
+      }
+    )
   }
 
   private calcAverage() {
@@ -45,10 +60,18 @@ export class ProductDetailComponent implements OnInit {
     }
     let _i = this.comments.length;
 
-    let _c = new Comment(++_i, this.productId, new Date(), 'sonmeone', this.newRating, this.newComment);
+    let _c = new Comment(++_i * 9, this.productId, new Date(), 'sonmeone', this.newRating, this.newComment);
     this.comments.unshift(_c);
-    this.isDisplay = false;
-    this.calcAverage();
+
+    this.productService.addProductComment(_c).toPromise().then(
+      data=> {
+        if(data){
+          this.isDisplay = false;
+          this.getProductComments();
+        }
+      }
+    )
+
   }
 
 }

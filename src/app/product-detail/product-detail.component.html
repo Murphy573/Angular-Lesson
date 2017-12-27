@@ -1,12 +1,12 @@
 <div class="thumbnail">
   <img [src]="imgSrc">
-  <h4 class="pull-right">{{product.price}}元</h4>
-  <h4 class="">{{product.title}}</h4>
-  <p>{{product.desc}}</p>
+  <h4 class="pull-right">{{product?.price}}元</h4>
+  <h4 class="">{{product?.title}}</h4>
+  <p>{{product?.desc}}</p>
 
   <div>
     <p>
-      <app-stars  [rating]="product.stars"></app-stars>
+      <app-stars  [rating]="product?.stars"></app-stars>
     </p>
   </div>
 </div>
@@ -30,7 +30,7 @@
     </div>
   </div>
   <hr>
-  <p>共{{comments.length}}条评论</p>
+  <p>共{{comments?.length}}条评论</p>
   <div class="row" *ngFor="let c of comments;let i = index;">
     <hr>
     <div class="col-sm-12">
