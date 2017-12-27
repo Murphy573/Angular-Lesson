@@ -1,0 +1,35 @@
+<form role="form" [formGroup]="searchForm" (ngSubmit)="query();" novalidate >
+  <div class="form-group" [class.has-error]="searchForm.get('productName').invalid && searchForm.get('productName').dirty">
+    <label for="productTitle">商品名称</label>
+    <input type="text" formControlName="productName" id="productTitle" placeholder="商品名称" class="form-control">
+  </div>
+  <div class="error-info col-sm-12" [style.font-size.px]="12"
+       [hidden]="searchForm.get('productName').valid || searchForm.get('productName').pristine">
+    <span [hidden]="!searchForm.get('productName').hasError('minlength')">
+      最小位数为3
+    </span>
+    <span [hidden]="!searchForm.get('productName').hasError('maxlength')">
+      最大位数为6
+    </span>
+  </div>
+  <div class="form-group" [class.has-error]="searchForm.get('productPrice').invalid && searchForm.get('productPrice').dirty">
+    <label for="productPrice">商品价格</label>
+    <input type="number" formControlName="productPrice" id="productPrice" placeholder="商品价格" class="form-control">
+  </div>
+  <div class="error-info col-sm-12" [style.font-size.px]="12"
+       [hidden]="searchForm.get('productPrice').valid || searchForm.get('productPrice').pristine">
+    <span [hidden]="!searchForm.get('productPrice').hasError('min')">
+      价格不小于0
+    </span>
+  </div>
+  <div class="form-group">
+    <label for="productCategory">商品类别</label>
+    <select id="productCategory" formControlName="productCategory" class="form-control">
+      <option value="all">全部类别</option>
+      <option *ngFor="let c of productCategories;" [ngValue]="c">{{c}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+   <button type="submit" [disabled]="searchForm.invalid" class="btn btn-primary btn-block">搜索</button>
+  </div>
+</form>

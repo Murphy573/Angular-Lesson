@@ -1,0 +1,6 @@
+<p>
+  <span *ngFor="let star of stars; let _index = index;"
+        [ngClass]="{'glyphicon-star-empty': !star}"
+        class="glyphicon glyphicon-star" (click)="setStar(_index)"></span>
+  <span class="pull-right">{{rating|number: '1.0-2'}}星</span>
+</p>
