@@ -16,6 +16,8 @@ import {AppRouting} from './app.routing';
 
 import {ProductService} from './shared/product.service';
 import { FilterPipe } from './shared/filter.pipe';
+import {HttpClientModule} from "@angular/common/http";
+import {HttpServiceService} from "./http-service.service";
 
 
 
@@ -36,9 +38,10 @@ import { FilterPipe } from './shared/filter.pipe';
     BrowserModule,
     AppRouting,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, HttpServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

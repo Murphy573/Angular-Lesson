@@ -28,7 +28,7 @@ const routes: Routes = [
 
 @NgModule(
   {
-    imports: [RouterModule.forRoot(routes, {enableTracing: false})], //调试用此配置
+    imports: [RouterModule.forRoot(routes, {enableTracing: false, useHash: true})], //调试用此配置
     exports: [RouterModule]
   }
 )
