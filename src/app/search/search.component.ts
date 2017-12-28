@@ -49,5 +49,7 @@ export class SearchComponent implements OnInit {
 
   query() {
     console.log(this.searchForm.value);
+
+    this.ps.searchEvent.emit(this.searchForm.value);
   }
 }

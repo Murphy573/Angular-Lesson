@@ -70,7 +70,7 @@ export class HttpServiceService {
     }
     let _params = JSON.parse(JSON.stringify(params));
     for(let [key, value] of Object.entries(_params)){
-      _httpParams.append(key, value.toString());
+      _httpParams = _httpParams.set(key, value.toString());
     }
 
     return _httpParams;
@@ -88,7 +88,7 @@ export class HttpServiceService {
     }
     let _params = JSON.parse(JSON.stringify(headers));
     for(let [key, value] of Object.entries(_params)){
-      _httpHeaders.append(key, value.toString());
+      _httpHeaders = _httpHeaders.append(key, value.toString());
     }
 
     return _httpHeaders;

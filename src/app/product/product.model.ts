@@ -22,3 +22,11 @@ export class Comment {
     public content: string
   ){}
 }
+
+export class ProductSearchParams {
+  constructor(
+    public productName: string,
+    public productPrice: number,
+    public productCategory: string
+  ) {}
+}

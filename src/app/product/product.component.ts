@@ -28,20 +28,30 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this._initData();
+    this.getProducts();
 
     this.titleFilter.valueChanges
       .debounceTime(500)
       .subscribe(value => this.keyWord = value);
   }
 
-  private _initData() {
-    this.productService.getProducts().subscribe(
+
+  private getProducts(data?) {
+    this.productService.getProducts(data).subscribe(
       data => {
         this.products = data;
       },
       (error2: HttpErrorResponse) => {
-        debugger;
       });
+  }
+
+  private _initData() {
+    this.productService.searchEvent.subscribe(
+      data=> {
+        this.getProducts(data);
+      }
+    );
+
     /*this.http.get<Array<ProductModel>>('product/getProductsss').subscribe(
       data => {
         this.products = data;

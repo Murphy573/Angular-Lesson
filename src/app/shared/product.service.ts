@@ -1,14 +1,16 @@
 /**
  * write by @pengfei.li
  */
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 
-import {ProductModel, Comment} from '../product/product.model';
-import {HttpClient} from '@angular/common/http';
+import {ProductModel, Comment, ProductSearchParams} from '../product/product.model';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ProductService {
+  searchEvent: EventEmitter<ProductSearchParams> = new EventEmitter();//搜索事件流：不同组件间通讯方式的一种;
+
   constructor(private http: HttpClient) {
   }
 
@@ -16,8 +18,16 @@ export class ProductService {
    * 获取所有商品
    * @returns {Observable<Array<ProductModel>>}
    */
-  getProducts(): Observable<Array<ProductModel>> {
-    return this.http.get<Array<ProductModel>>('product/getProducts')
+  getProducts(searchParams?: ProductSearchParams): Observable<Array<ProductModel>> {
+    let _httpParams: HttpParams = new HttpParams();
+    if(searchParams){
+      for(let [key, value] of Object.entries(searchParams)){
+        if(value){
+          _httpParams = _httpParams.set(key, value.toString());
+        }
+      }
+    }
+    return this.http.get<Array<ProductModel>>('product/getProducts', {params: _httpParams})
   }
 
   /**
