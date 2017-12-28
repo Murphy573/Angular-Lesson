@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --open --port 0421 --proxy-config proxy.conf.json --base-href /Angular-Lesson/",
+    "start": "ng serve --open --port 0421 --proxy-config proxy.conf.json",
     "build": "ng build --prod --aot",
     "test": "ng test",
     "lint": "ng lint",
