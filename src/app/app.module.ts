@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
 
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { FilterPipe } from './shared/filter.pipe';
 import {HttpClientModule} from "@angular/common/http";
 import {HttpServiceService} from "./http-service.service";
 import {CommunicationServiceService} from "./shared/communication-service.service";
+import {MyHttpInterceptorService} from "./shared/interceptor/my-http-interceptor.service";
 
 
 
@@ -42,7 +44,13 @@ import {CommunicationServiceService} from "./shared/communication-service.servic
     FormsModule,
     HttpClientModule
   ],
-  providers: [ProductService, HttpServiceService, CommunicationServiceService],
+  providers: [ProductService, HttpServiceService, CommunicationServiceService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyHttpInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
