@@ -14,13 +14,13 @@ import {CommunicationServiceService} from "../shared/communication-service.servi
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  private products: Array<ProductModel>;
+  products: Array<ProductModel>;
 
-  private imgSrc: string = 'http://placehold.it/320x150';
+  imgSrc: string = 'http://placehold.it/320x150';
 
-  private keyWord: string;
+  keyWord: string;
 
-  private titleFilter: FormControl = new FormControl();
+  titleFilter: FormControl = new FormControl();
 
   constructor(
     public productService: ProductService,

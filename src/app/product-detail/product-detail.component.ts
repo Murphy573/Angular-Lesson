@@ -11,18 +11,18 @@ import {Comment, ProductModel} from '../product/product.model';
 })
 export class ProductDetailComponent implements OnInit {
 
-  private productId: number;
-  private product: ProductModel;
-  private comments: Comment[];
-  private imgSrc: string = 'http://placehold.it/820x230';
-  private isDisplay: boolean = false;
+  productId: number;
+  product: ProductModel;
+  comments: Comment[];
+  imgSrc: string = 'http://placehold.it/820x230';
+  isDisplay: boolean = false;
 
   newRating: number = 5;
   newComment: string = '';
 
   constructor(
-    private routeInfo: ActivatedRoute,
-    private productService: ProductService
+    public routeInfo: ActivatedRoute,
+    public productService: ProductService
   ) { }
 
   ngOnInit() {
