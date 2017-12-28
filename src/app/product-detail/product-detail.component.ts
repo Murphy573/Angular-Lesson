@@ -35,12 +35,11 @@ export class ProductDetailComponent implements OnInit {
       data=> {
         this.product = data;
         this.getProductComments();
-
       }
     )
   }
 
-  getProductComments () {
+  getProductComments (): void {
     this.productService.getComments4Product(this.productId).subscribe(
       data=> {
         this.comments = data;
@@ -49,7 +48,7 @@ export class ProductDetailComponent implements OnInit {
     )
   }
 
-  private calcAverage() {
+  private calcAverage(): void {
     let _sum = this.comments.reduce((sum: number, comment: Comment) => sum + comment.rating, 0);
     this.product.stars = _sum / this.comments.length;
   }
