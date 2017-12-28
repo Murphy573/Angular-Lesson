@@ -6,6 +6,7 @@ import {FormControl} from "@angular/forms";
 import "rxjs/add/operator/debounceTime";
 import {HttpErrorResponse} from '@angular/common/http';
 import {HttpServiceService} from "../http-service.service";
+import {CommunicationServiceService} from "../shared/communication-service.service";
 
 @Component({
   selector: 'app-product',
@@ -23,7 +24,8 @@ export class ProductComponent implements OnInit {
 
   constructor(
     public productService: ProductService,
-    public mHttp: HttpServiceService
+    public mHttp: HttpServiceService,
+    public cs: CommunicationServiceService
   ) {}
 
   ngOnInit() {
@@ -51,6 +53,12 @@ export class ProductComponent implements OnInit {
         this.getProducts(data);
       }
     );
+
+    this.cs.search$.subscribe(
+      data=> {
+        this.getProducts(data);
+      }
+    )
 
     /*this.http.get<Array<ProductModel>>('product/getProductsss').subscribe(
       data => {

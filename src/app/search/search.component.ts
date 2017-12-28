@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../shared/product.service";
+import {CommunicationServiceService} from "../shared/communication-service.service";
 
 @Component({
   selector: 'app-search',
@@ -14,7 +15,8 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private ps: ProductService
+    private ps: ProductService,
+    private cs: CommunicationServiceService
   ) { }
 
   ngOnInit() {
@@ -51,5 +53,7 @@ export class SearchComponent implements OnInit {
     console.log(this.searchForm.value);
 
     this.ps.searchEvent.emit(this.searchForm.value);
+
+    this.cs.startSearch(this.searchForm.value);
   }
 }

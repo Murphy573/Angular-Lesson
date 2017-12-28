@@ -18,6 +18,7 @@ import {ProductService} from './shared/product.service';
 import { FilterPipe } from './shared/filter.pipe';
 import {HttpClientModule} from "@angular/common/http";
 import {HttpServiceService} from "./http-service.service";
+import {CommunicationServiceService} from "./shared/communication-service.service";
 
 
 
@@ -41,7 +42,7 @@ import {HttpServiceService} from "./http-service.service";
     FormsModule,
     HttpClientModule
   ],
-  providers: [ProductService, HttpServiceService],
+  providers: [ProductService, HttpServiceService, CommunicationServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
